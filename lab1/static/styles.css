@@ -1,0 +1,229 @@
+
+img {
+    width: 2em;
+    height: 2em;
+}
+
+li {
+    list-style: none;
+}
+
+li.cities-list__city__city-properties__city-property {
+    background: gray;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+li.cities-list__city {
+    width: 40%;
+}
+
+.cities-list__city__city-properties, .cities-list {
+    padding: 0;
+    margin: 0;
+}
+
+.cities-list__city__city-properties__city-property span:first-child {
+    font-weight: bold;
+}
+
+.cities-list__city__city-properties__city-property, .cities-list__city__city-header, .cities-list__city__city-header__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cities-list__city__city-header {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.current-city h4 {
+    font-size: 15pt;
+    margin-top: 0;
+    color: dimgray;
+}
+
+.current-city_weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-city_weather img {
+    width: 100px;
+    height: 100px;
+}
+
+.current-city_weather span {
+    font-size: 40pt;
+    color: dimgray;
+}
+
+.cities-list__city__city-header__text h4 {
+    display: inline-block;
+    font-size: 15pt;
+    color: dimgray;
+}
+
+.cities-list__city__city-header__text span {
+    color: dimgray;
+    font-size: 20pt;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.cities-list__city__city-header__text img {
+    width: 50px;
+    height: 50px;
+}
+
+.cities-list__city__city-header__text {
+    width: 50%;
+}
+
+button {
+    border-radius: 50%;
+    border: none;
+    outline: none; /* убираем границы выделения после клика */
+    height: 30px;
+    width: 30px;
+    background: dimgray;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    background: gray;
+}
+
+body {
+    font-family: monospace;
+    margin: 0 20%;
+    min-width: 350px;
+}
+
+.cities-list__city {
+    display: inline-block;
+}
+
+.cities-list__city:nth-child(odd) {
+    margin-right: 5%;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3 {
+    font-size: 18pt;
+    color: gray;
+}
+
+.toolbar button {
+    font-size: 13pt;
+}
+
+.geo-update {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 59%;
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 0;*/
+}
+
+.geo-update__input_desktop {
+    width: 150px;
+    height: 40px;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+}
+
+
+.geo-update__input_mobile {
+    width: 25px;
+    height: 25px;
+    background-image: url("refresh.png");
+    background-repeat: no-repeat;
+    background-size: 25px, 25px;
+    background-color: transparent;
+    display: none;
+    border: none;
+    outline: none;
+}
+
+.geo-update__input_mobile:hover {
+    background-color: gray;
+}
+
+.current-city {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-city .cities-list__city__city-properties {
+    width: 45%;
+}
+
+.current-city .current-city__info {
+    width: 30%;
+}
+
+@media screen and (max-width: 950px) {
+    .cities-list__city {
+        display: block;
+    }
+
+    li.cities-list__city {
+        width: 80%;
+    }
+
+    .toolbar {
+        display: block;
+    }
+
+    .toolbar div {
+        width: 80%;
+    }
+
+    .toolbar div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toolbar div input {
+        width: 75%;
+    }
+
+    .geo-update {
+        width: 70%;
+    }
+
+    .geo-update__input_desktop {
+        display: none;
+    }
+
+    .geo-update__input_mobile {
+        display: block;
+    }
+
+    .current-city {
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .current-city .cities-list__city__city-properties {
+        width: 80%;
+    }
+
+    .current-city .current-city__info {
+        width: 80%;
+    }
+}

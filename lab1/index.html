@@ -2,16 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 
 <body>
     <head>
-
+        <div class="geo-update">
+            <h3>Погода здесь</h3>
+            <input class="geo-update__input_desktop" type="button" value="Обновить геолокацию">
+            <input class="geo-update__input_mobile" type="button" value="">
+        </div>
+        <div class="current-city">
+            <div class="current-city__info">
+                <h4>Санкт-Петербург</h4>
+                <div class="current-city_weather">
+                    <img src="static/weather.png">
+                    <span>5°C</span>
+                </div>
+            </div>
+            <ul class="cities-list__city__city-properties">
+                <li class="cities-list__city__city-properties__city-property">
+                    <span>Ветер</span>
+                    <span>2 м/c</span>
+                </li>
+                <li class="cities-list__city__city-properties__city-property">
+                    <span>Облачность</span>
+                    <span>Облачно</span>
+                </li>
+                <li class="cities-list__city__city-properties__city-property">
+                    <span>Давление</span>
+                    <span>763 мм. рт. ст.</span>
+                </li>
+                <li class="cities-list__city__city-properties__city-property">
+                    <span>Влажность</span>
+                    <span>52 %</span>
+                </li>
+                <li class="cities-list__city__city-properties__city-property">
+                    <span>Координаты</span>
+                    <span>[59.88, 30.42]</span>
+                </li>
+            </ul>
+        </div>
     </head>
     <main>
-        <h3>Избранное</h3>
+        <div class="toolbar">
+            <h3>Избранное</h3>
+            <div>
+                <input placeholder="Добавить новый город">
+                <button>+</button>
+            </div>
+        </div>
         <ul class="cities-list">
             <!-- first city -->
             <li class="cities-list__city">
