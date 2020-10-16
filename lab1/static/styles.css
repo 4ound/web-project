@@ -146,6 +146,10 @@ h3 {
     outline: none;
 }
 
+.geo-update__input_desktop:hover {
+    background-color: dimgray;
+    color: white;
+}
 
 .geo-update__input_mobile {
     width: 25px;
