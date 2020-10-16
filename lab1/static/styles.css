@@ -33,10 +33,8 @@ li.cities-list__city {
     padding: 0;
 }
 
-.current-city h4 {
-    font-size: 15pt;
+.current-city h2 {
     margin-top: 0;
-    color: dimgray;
 }
 
 .current-city_weather {
@@ -95,7 +93,7 @@ button:hover {
 body {
     font-family: monospace;
     margin: 0 20%;
-    min-width: 350px;
+    min-width: 300px;
 }
 
 .cities-list__city {
@@ -117,9 +115,14 @@ body {
     align-items: center;
 }
 
-h3 {
+h1 {
     font-size: 18pt;
     color: gray;
+}
+
+h2 {
+    font-size: 15pt;
+    color: dimgray;
 }
 
 .toolbar button {
@@ -179,8 +182,16 @@ h3 {
 }
 
 @media screen and (max-width: 950px) {
+    .cities-list__city__city-header__text span {
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .cities-list__city {
         display: block;
+        margin-left: 10%;
         /*width: 80%;*/
     }
 
@@ -190,16 +201,17 @@ h3 {
 
     .toolbar {
         display: block;
+        margin-left: 10%;
     }
 
     .toolbar div {
-        width: 80%;
+        width: 89%;
     }
 
     .toolbar div {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
     }
 
     .toolbar div input {
@@ -208,6 +220,7 @@ h3 {
 
     .geo-update {
         width: 70%;
+        margin-left: 10%;
     }
 
     .geo-update__input_desktop {
@@ -220,6 +233,7 @@ h3 {
 
     .current-city {
         justify-content: flex-start;
+        align-items: center;
         flex-direction: column;
     }
 
@@ -231,7 +245,7 @@ h3 {
         width: 80%;
     }
 
-    .cities-list__city:nth-child(even) {
-        margin-left: 0;
+    body {
+        margin: 0 20px;
     }
 }
