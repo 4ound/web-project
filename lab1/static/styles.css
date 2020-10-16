@@ -227,4 +227,8 @@ h3 {
     .current-city .current-city__info {
         width: 80%;
     }
+
+    .cities-list__city:nth-child(even) {
+        margin-left: 0;
+    }
 }
