@@ -16,7 +16,7 @@ li.cities-list__city__city-properties__city-property {
 }
 
 li.cities-list__city {
-    width: 40%;
+    width: 45%;
 }
 
 .cities-list__city__city-properties, .cities-list {
@@ -106,10 +106,11 @@ body {
 
 .cities-list__city {
     display: inline-block;
+    /*border: 1px solid #e5edec;*/
 }
 
-.cities-list__city:nth-child(odd) {
-    margin-right: 5%;
+.cities-list__city:nth-child(even) {
+    margin-left: 9.5%;
 }
 
 .toolbar {
@@ -131,7 +132,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 59%;
+    width: 60%;
     /*position: absolute;*/
     /*left: 50%;*/
     /*top: 0;*/
