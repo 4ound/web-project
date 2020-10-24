@@ -115,6 +115,13 @@ body {
     align-items: center;
 }
 
+.toolbar div {
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 h1 {
     font-size: 18pt;
     color: gray;
@@ -181,6 +188,20 @@ h2 {
     width: 30%;
 }
 
+input.toolbar-add {
+    border: none;
+    background-color: lightgray;
+    padding: 5px 5px;
+    border-radius: 4px;
+    height: 20px;
+    width: 80%;
+    font-size: 10pt;
+}
+
+input::-webkit-input-placeholder {
+  color: dimgrey;
+}
+
 @media screen and (max-width: 950px) {
     body {
         margin: 0 10%;
@@ -211,13 +232,10 @@ h2 {
 
     .toolbar div {
         width: 89%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
     }
 
     .toolbar div input {
-        width: 75%;
+        width: 80%;
     }
 
     .geo-update {
