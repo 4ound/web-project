@@ -147,9 +147,11 @@ h2 {
 }
 
 .geo-update__input_desktop {
-    width: 150px;
+    width: 170px;
     height: 40px;
     border-radius: 7px;
+    font-size: 10pt;
+    color: dimgrey;
     border: none;
     outline: none;
 }
@@ -199,7 +201,7 @@ input.toolbar-add {
 }
 
 input::-webkit-input-placeholder {
-  color: dimgrey;
+  color: dimgray;
 }
 
 @media screen and (max-width: 950px) {
