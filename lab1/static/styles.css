@@ -220,7 +220,6 @@ input::-webkit-input-placeholder {
     .cities-list__city {
         display: block;
         margin-left: 10%;
-        /*width: 80%;*/
     }
 
     li.cities-list__city {
@@ -229,11 +228,12 @@ input::-webkit-input-placeholder {
 
     .toolbar {
         display: block;
-        margin-left: 10%;
+        width: 80%;
+        margin: 0 auto;
     }
 
     .toolbar div {
-        width: 89%;
+        width: 100%;
     }
 
     .toolbar div input {
