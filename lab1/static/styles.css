@@ -1,0 +1,281 @@
+li {
+    list-style: none;
+}
+
+.cities-list {
+     font-size: 0;
+ }
+
+ .cities-list__city__city-properties {
+     font-size: 10pt;
+ }
+
+li.cities-list__city__city-properties__city-property {
+    background: gray;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+li.cities-list__city {
+    width: 45%;
+}
+
+.cities-list__city__city-properties, .cities-list {
+    padding: 0;
+    margin: 0;
+}
+
+.cities-list__city__city-properties__city-property span:first-child {
+    font-weight: bold;
+}
+
+.cities-list__city__city-properties__city-property, .cities-list__city__city-header, .cities-list__city__city-header__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cities-list__city__city-header {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.current-city h2 {
+    margin-top: 0;
+}
+
+.current-city_weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-city_weather img {
+    width: 100px;
+    height: 100px;
+}
+
+.current-city_weather span {
+    font-size: 40pt;
+    color: dimgray;
+}
+
+.cities-list__city__city-header__text h3 {
+    display: inline-block;
+    font-size: 15pt;
+    color: dimgray;
+}
+
+.cities-list__city__city-header__text span {
+    color: dimgray;
+    font-size: 20pt;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.cities-list__city__city-header__text img {
+    width: 50px;
+    height: 50px;
+}
+
+.cities-list__city__city-header__text {
+    width: 50%;
+}
+
+button {
+    border-radius: 50%;
+    border: none;
+    outline: none; /* убираем границы выделения после клика */
+    height: 30px;
+    width: 30px;
+    background: dimgray;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    background: gray;
+}
+
+body {
+    font-family: monospace;
+    margin: 0 20%;
+    min-width: 300px;
+}
+
+.cities-list__city {
+    display: inline-block;
+    /*border: 1px solid #e5edec;*/
+}
+
+.cities-list__city:nth-child(even) {
+    margin-left: 10%;
+}
+
+.cities-list__city:last-child {
+    margin-bottom: 10%;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar form {
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 18pt;
+    color: gray;
+}
+
+h2 {
+    font-size: 15pt;
+    color: dimgray;
+}
+
+.toolbar button {
+    font-size: 13pt;
+}
+
+.geo-update {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 0;*/
+}
+
+.geo-update__input_desktop {
+    width: 170px;
+    height: 40px;
+    border-radius: 7px;
+    font-size: 10pt;
+    color: dimgrey;
+    border: none;
+    outline: none;
+}
+
+.geo-update__input_desktop:hover {
+    background-color: dimgray;
+    color: white;
+}
+
+.geo-update__input_mobile {
+    width: 25px;
+    height: 25px;
+    background-image: url("refresh.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: transparent;
+    display: none;
+    border: none;
+    outline: none;
+}
+
+.geo-update__input_mobile:hover {
+    background-color: gray;
+}
+
+.current-city {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-city .cities-list__city__city-properties {
+    width: 45%;
+}
+
+.current-city .current-city__info {
+    width: 30%;
+}
+
+input.form-city {
+    border: none;
+    background-color: lightgray;
+    padding: 5px 5px;
+    border-radius: 4px;
+    height: 20px;
+    width: 80%;
+    font-size: 10pt;
+}
+
+input::-webkit-input-placeholder {
+  color: dimgray;
+}
+
+@media screen and (max-width: 950px) {
+    body {
+        margin: 0 10%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    body {
+        margin: 0 20px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .cities-list__city {
+        display: block;
+        margin-left: 10%;
+    }
+
+    li.cities-list__city {
+        width: 80%;
+    }
+
+    .toolbar {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .toolbar form {
+        width: 100%;
+    }
+
+    .toolbar form input {
+        width: 80%;
+    }
+
+    .geo-update {
+        width: 70%;
+        margin-left: 10%;
+    }
+
+    .geo-update__input_desktop {
+        display: none;
+    }
+
+    .geo-update__input_mobile {
+        display: block;
+    }
+
+    .current-city {
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .current-city .cities-list__city__city-properties {
+        width: 80%;
+    }
+
+    .current-city .current-city__info {
+        width: 80%;
+    }
+
+    body {
+        margin: 0 20px;
+    }
+}
