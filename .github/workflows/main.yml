@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
+name: Build docker image and deploy to heroku
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ lab-3 ]
@@ -22,16 +18,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
       - name: Heroku login
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -40,7 +26,7 @@ jobs:
       - name: Build and push
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
+        run: heroku container:push --recursive --context-path . -a ${{ secrets.HEROKU_APP_NAME }}
 
       - name: Release
         env:

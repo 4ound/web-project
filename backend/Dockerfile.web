@@ -1,6 +1,6 @@
 FROM node:14
 
-COPY backend /
+COPY backend .
 
 RUN npm install
 
