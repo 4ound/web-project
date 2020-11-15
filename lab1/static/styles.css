@@ -2,6 +2,14 @@ li {
     list-style: none;
 }
 
+.cities-list {
+     font-size: 0;
+ }
+
+ .cities-list__city__city-properties {
+     font-size: 10pt;
+ }
+
 li.cities-list__city__city-properties__city-property {
     background: gray;
     color: white;
@@ -115,7 +123,7 @@ body {
     align-items: center;
 }
 
-.toolbar div {
+.toolbar form {
     width: 45%;
     display: flex;
     justify-content: space-between;
@@ -190,7 +198,7 @@ h2 {
     width: 30%;
 }
 
-input.toolbar-add {
+input.form-city {
     border: none;
     background-color: lightgray;
     padding: 5px 5px;
@@ -232,11 +240,11 @@ input::-webkit-input-placeholder {
         margin: 0 auto;
     }
 
-    .toolbar div {
+    .toolbar form {
         width: 100%;
     }
 
-    .toolbar div input {
+    .toolbar form input {
         width: 80%;
     }
 

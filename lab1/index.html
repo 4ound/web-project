@@ -50,13 +50,12 @@
 
         <section class="toolbar">
             <h2>Избранное</h2>
-            <div>
-                <input class="toolbar-add" placeholder="Добавить новый город">
+            <form>
+                <input class="form-city" placeholder="Добавить новый город">
                 <button>+</button>
-            </div>
+            </form>
         </section>
         <ul class="cities-list">
-            <!-- first city -->
             <li class="cities-list__city">
                 <div class="cities-list__city__city-header">
                     <div class="cities-list__city__city-header__text">
@@ -88,104 +87,7 @@
                         <span>[59.88, 30.42]</span>
                     </li>
                 </ul>
-            </li><!-- second city
-            --><li class="cities-list__city">
-                <div class="cities-list__city__city-header">
-                    <div class="cities-list__city__city-header__text">
-                        <h3>Ижевск</h3>
-                        <span>5°C</span>
-                        <img src="static/weather.png" alt="Иконка погоды">
-                    </div>
-                    <button>X</button>
-                </div>
-                <ul class="cities-list__city__city-properties">
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Ветер</span>
-                        <span>2 м/c</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Облачность</span>
-                        <span>Облачно</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Давление</span>
-                        <span>763 мм. рт. ст.</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Влажность</span>
-                        <span>52 %</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Координаты</span>
-                        <span>[59.88, 30.42]</span>
-                    </li>
-                </ul>
-            </li><!-- third city
-            --><li class="cities-list__city">
-                <div class="cities-list__city__city-header">
-                    <div class="cities-list__city__city-header__text">
-                        <h3>Ижевск</h3>
-                        <span>5°C</span>
-                        <img src="static/weather.png" alt="Иконка погоды">
-                    </div>
-                    <button>X</button>
-                </div>
-                <ul class="cities-list__city__city-properties">
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Ветер</span>
-                        <span>2 м/c</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Облачность</span>
-                        <span>Облачно</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Давление</span>
-                        <span>763 мм. рт. ст.</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Влажность</span>
-                        <span>52 %</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Координаты</span>
-                        <span>[59.88, 30.42]</span>
-                    </li>
-                </ul>
-            </li><!-- fourth city
-            --><li class="cities-list__city">
-                <div class="cities-list__city__city-header">
-                    <div class="cities-list__city__city-header__text">
-                        <h3>Ижевск</h3>
-                        <span>5°C</span>
-                        <img src="static/weather.png" alt="Иконка погоды">
-                    </div>
-                    <button>X</button>
-                </div>
-                <ul class="cities-list__city__city-properties">
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Ветер</span>
-                        <span>2 м/c</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Облачность</span>
-                        <span>Облачно</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Давление</span>
-                        <span>763 мм. рт. ст.</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Влажность</span>
-                        <span>52 %</span>
-                    </li>
-                    <li class="cities-list__city__city-properties__city-property">
-                        <span>Координаты</span>
-                        <span>[59.88, 30.42]</span>
-                    </li>
-                </ul>
-            </li><!-- fifth city
-            -->
+            </li>
             <li class="cities-list__city">
                 <div class="cities-list__city__city-header">
                     <div class="cities-list__city__city-header__text">
@@ -217,8 +119,104 @@
                         <span>[59.88, 30.42]</span>
                     </li>
                 </ul>
-            </li><!-- sixth city
-            --><li class="cities-list__city">
+            </li>
+            <li class="cities-list__city">
+                <div class="cities-list__city__city-header">
+                    <div class="cities-list__city__city-header__text">
+                        <h3>Ижевск</h3>
+                        <span>5°C</span>
+                        <img src="static/weather.png" alt="Иконка погоды">
+                    </div>
+                    <button>X</button>
+                </div>
+                <ul class="cities-list__city__city-properties">
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Ветер</span>
+                        <span>2 м/c</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Облачность</span>
+                        <span>Облачно</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Давление</span>
+                        <span>763 мм. рт. ст.</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Влажность</span>
+                        <span>52 %</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Координаты</span>
+                        <span>[59.88, 30.42]</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="cities-list__city">
+                <div class="cities-list__city__city-header">
+                    <div class="cities-list__city__city-header__text">
+                        <h3>Ижевск</h3>
+                        <span>5°C</span>
+                        <img src="static/weather.png" alt="Иконка погоды">
+                    </div>
+                    <button>X</button>
+                </div>
+                <ul class="cities-list__city__city-properties">
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Ветер</span>
+                        <span>2 м/c</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Облачность</span>
+                        <span>Облачно</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Давление</span>
+                        <span>763 мм. рт. ст.</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Влажность</span>
+                        <span>52 %</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Координаты</span>
+                        <span>[59.88, 30.42]</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="cities-list__city">
+                <div class="cities-list__city__city-header">
+                    <div class="cities-list__city__city-header__text">
+                        <h3>Ижевск</h3>
+                        <span>5°C</span>
+                        <img src="static/weather.png" alt="Иконка погоды">
+                    </div>
+                    <button>X</button>
+                </div>
+                <ul class="cities-list__city__city-properties">
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Ветер</span>
+                        <span>2 м/c</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Облачность</span>
+                        <span>Облачно</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Давление</span>
+                        <span>763 мм. рт. ст.</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Влажность</span>
+                        <span>52 %</span>
+                    </li>
+                    <li class="cities-list__city__city-properties__city-property">
+                        <span>Координаты</span>
+                        <span>[59.88, 30.42]</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="cities-list__city">
                 <div class="cities-list__city__city-header">
                     <div class="cities-list__city__city-header__text">
                         <h3>Ижевск</h3>
