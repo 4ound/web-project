@@ -10,6 +10,10 @@ const COOKIE_NAME = "uuid";
 const COOKIE_LENGTH = 64;
 
 app.use(cookieParser())
+// app.use(cors({
+//     origin : "http://localhost:8080",
+//     credentials: true,
+// }))
 
 app.get("/", function (req, res) {
     // res.send(process.env.RESPONSE)
@@ -17,6 +21,7 @@ app.get("/", function (req, res) {
 })
 
 mainRouter.get("/city", (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     OpenWeather.getByName(req.query.q).then(r => {
         if (!r) {
             res.sendStatus(400);
@@ -27,7 +32,8 @@ mainRouter.get("/city", (req, res) => {
 })
 
 mainRouter.get("/coordinates", (req, res) => {
-    OpenWeather.getByCoords(req.query.lat, req.query['long']).then(r => {
+    res.set('Access-Control-Allow-Origin', '*');
+    OpenWeather.getByCoords(req.query.lat, req.query.long).then(r => {
         if (!r) {
             res.sendStatus(400);
         } else {
@@ -38,11 +44,20 @@ mainRouter.get("/coordinates", (req, res) => {
 
 app.route("/favourites")
     .get((req, res) => {
+        // console.info("@get " + getCookies(req));
+        res.set('Access-Control-Allow-Credentials', 'true');
+        res.set('Access-Control-Allow-Origin', req.headers.origin);
         getCities(getCookies(req)).then(cities => {
-            Promise.all(cities.map(name => OpenWeather.getByName(name))).then(weatherCities => res.send((weatherCities)));
+            // Promise.all(cities.map(name => OpenWeather.getByName(name))).then(weatherCities => res.send((weatherCities)));
+            res.send((cities));
         })
     })
     .post((req, res) => {
+        // console.info("@post " + getCookies(req));
+        res.set('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
+        res.set('Access-Control-Allow-Headers', 'Content-Type');
+        res.set('Access-Control-Allow-Origin', req.headers.origin);
+        res.set('Access-Control-Allow-Credentials', 'true');
         let cookies = getCookies(req);
         if (!cookies) {
             cookies = crypto.randomBytes(COOKIE_LENGTH).toString("hex");
@@ -64,11 +79,24 @@ app.route("/favourites")
         });
     })
     .delete((req, res) => {
+        // console.info("@delete " + getCookies(req));
+        res.set('Access-Control-Allow-Methods', 'DELETE');
+        res.set('Access-Control-Allow-Headers', 'Content-Type');
+        res.set('Access-Control-Allow-Origin', req.headers.origin);
+        res.set('Access-Control-Allow-Credentials', 'true');
         let cookies = getCookies(req);
         removeCity(cookies, req.query.q).then(() => {
             res.sendStatus(202);
         });
     })
+
+app.options('*', (req, res) => {
+    res.set('Access-Control-Allow-Origin', req.headers.origin);
+    res.set("Access-Control-Allow-Headers", "Content-Type");
+    res.set("Access-Control-Allow-Credentials", 'true');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+    res.send('ok');
+});
 
 app.get("/set_cookie", (req, res) => {
     const id = crypto.randomBytes(COOKIE_LENGTH).toString("hex");
@@ -96,7 +124,7 @@ let getCookies = (req) => {
 }
 
 let createCookies = (res, value) => {
-    res.cookie(COOKIE_NAME, value)
+    res.cookie(COOKIE_NAME, value);
 }
 
 app.use("/weather", mainRouter);
