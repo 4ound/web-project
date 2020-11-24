@@ -94,7 +94,7 @@ let getCookies = (req) => {
 }
 
 let createCookies = (res, value) => {
-    res.cookie(COOKIE_NAME, value);
+    res.cookie(COOKIE_NAME, value, { sameSite: 'none', secure: true });
 }
 
 app.use("/weather", mainRouter);
