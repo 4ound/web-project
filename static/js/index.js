@@ -159,7 +159,7 @@ let getUserLocation = function (onSuccess, onError) {
 };
 
 class Backend {
-    static url = "http://localhost:3000";
+    static url = "https://web-weather-backend.herokuapp.com";
 
     static getByName(name) {
         let params = {q: name};
