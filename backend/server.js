@@ -10,15 +10,6 @@ const COOKIE_NAME = "uuid";
 const COOKIE_LENGTH = 64;
 
 app.use(cookieParser())
-// app.use(cors({
-//     origin : "http://localhost:8080",
-//     credentials: true,
-// }))
-
-app.get("/", function (req, res) {
-    // res.send(process.env.RESPONSE)
-    res.send(new URL("https://api.openweathermap.org/data/2.5/weather"));
-})
 
 mainRouter.get("/city", (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
@@ -97,27 +88,6 @@ app.options('*', (req, res) => {
     res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE');
     res.send('ok');
 });
-
-app.get("/set_cookie", (req, res) => {
-    const id = crypto.randomBytes(COOKIE_LENGTH).toString("hex");
-    res.cookie(COOKIE_NAME, id).send("Set cookie");
-})
-
-app.get("/remove_cookie", (req, res) => {
-    res.clearCookie(COOKIE_NAME).send("removed");
-})
-
-app.get("/check_cookie", (req, res) => {
-    res.send(req.cookies[COOKIE_NAME]);
-})
-
-app.get("/check", (req, res) => {
-    const collection = getCollection().then(collection => {
-        collection.insertOne({name: "Red", town: "kanto"}).then(() => {
-            res.send("Inserted");
-        })
-    });
-})
 
 let getCookies = (req) => {
     return req.cookies[COOKIE_NAME];

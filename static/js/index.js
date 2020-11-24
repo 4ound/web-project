@@ -1,41 +1,33 @@
 window.onload = function () {
     updateGeo()
 
-    for (const cityName of getCities()) {
-        const sectionId = insertDummy();
-        ow.getByName(cityName).then(weatherData => {
-            if (weatherData) {
-                addCity(weatherData, sectionId);
-            } else {
-                removeDummy(sectionId);
-            }
-        });
-    }
+    Backend.getFavourites().then(cityNames => {
+        for (const cityName of cityNames) {
+            const sectionId = insertDummy();
+
+            Backend.getByName(cityName).then(weatherData => {
+                if (weatherData) {
+                    addCity(weatherData, sectionId);
+                } else {
+                    removeDummy(sectionId);
+                }
+            });
+        }
+    })
+
 
     document.getElementById("toolbar__form").addEventListener("submit", (e) => {
         e.preventDefault();
         const sectionId = insertDummy();
         let formCity = e.target.elements['form-city'];
-        if (getCities().includes(formCity.value)) {
-            alert(`Город ${formCity.value} уже добавлен!`);
-            formCity.value = "";
-            removeDummy(sectionId);
-            return;
-        }
-        ow.getByName(formCity.value).then(
-            weatherData => {
+
+        Backend.addFavourite(formCity.value).then(weatherData => {
             if (weatherData) {
                 formCity.value = "";
-                if (getCities().includes(weatherData['name'])) {
-                    alert(`Город ${weatherData['name']} уже добавлен!`);
-                    removeDummy(sectionId);
-                    return;
-                }
-                saveNewCity(weatherData['name']);
                 addCity(weatherData, sectionId);
             } else {
                 removeDummy(sectionId);
-                alert(`Не удалось загрузить информацию о погоде для ${formCity.value}`);
+                alert(`Не удалось добавить информацию о погоде для ${formCity.value}`);
             }
         });
     });
@@ -62,11 +54,11 @@ let updateGeo = function () {
 
     getUserLocation(
         function (position) {
-            ow.getByCoords(position.coords.latitude, position.coords.longitude)
+            Backend.getByCoords(position.coords.latitude, position.coords.longitude)
                 .then(weatherData => updateHeader(weatherData));
         },
         function (err) {
-            ow.getByName("Москва").then(weatherData => updateHeader(weatherData));
+            Backend.getByName("Москва").then(weatherData => updateHeader(weatherData));
             console.debug(err)
         }
     );
@@ -100,25 +92,6 @@ let updateHeader = function (weatherData) {
         loader.classList.remove("loading");
         loader.classList.add("loaded");
     }
-}
-
-let getCities = function () {
-    const cities = localStorage.getItem("cities");
-    if (!cities) {
-        return [];
-    }
-    return JSON.parse(cities);
-}
-
-let saveNewCity = function (city) {
-    let cities = getCities();
-    cities.push(city);
-    localStorage.setItem("cities", JSON.stringify(cities));
-}
-
-let removeCity = function (city) {
-    const cities = getCities().filter(e => e !== city);
-    localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 let insertDummy = function () {
@@ -165,12 +138,14 @@ let addCity = function (weatherData, sectionId) {
         = `[ ${weatherData['coord']['lon']}, ${weatherData['coord']['lat']} ]`;
 
     cityElement.querySelector("button").addEventListener("click", () => {
-        let citiesList = document.getElementsByClassName("cities-list")[0];
-        let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
-        console.info(citiesList);
-        console.info(removingCity);
-        citiesList.removeChild(removingCity);
-        removeCity(weatherData['name']);
+        Backend.removeFavourite(weatherData['name']).then(() => {
+            let citiesList = document.getElementsByClassName("cities-list")[0];
+            let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
+            console.info(citiesList);
+            console.info(removingCity);
+            citiesList.removeChild(removingCity);
+            //TODO handle not ok resp
+        })
     });
 
     let loaders = cityElement.querySelectorAll(".loading");
@@ -183,25 +158,51 @@ let getUserLocation = function (onSuccess, onError) {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 };
 
-class OpenWeather {
-    url = new URL("https://api.openweathermap.org/data/2.5/weather");
-    apiKey = "eafb827a2f211d77ce609493024edcac";
+class Backend {
+    static url = "http://localhost:3000";
 
-    getByName(name) {
-        let params = {q: name, appid: this.apiKey, units: 'metric', lang: 'ru'};
-        return this.makeRequest(this.url, params);
+    static getByName(name) {
+        let params = {q: name};
+        return this.makeRequest(`${this.url}/weather/city`, params);
     }
 
-    getByCoords(latitude, longitude) {
-        let params = {lat: latitude, lon: longitude, appid: this.apiKey, units: 'metric', lang: 'ru'};
-        return this.makeRequest(this.url, params);
+    static getByCoords(latitude, longitude) {
+        let params = {lat: latitude, long: longitude};
+        return this.makeRequest(`${this.url}/weather/coordinates`, params);
     }
 
-    async makeRequest(url, params) {
+    static getFavourites() {
+        let options = {
+            credentials: 'include',
+        }
+        return this.makeRequest(`${this.url}/favourites`, {}, options);
+    }
+
+    static addFavourite(name) {
+        let params = {q: name};
+        let options = {
+            method: 'POST',
+            credentials: 'include',
+            // body: JSON.stringify({id: 123})
+        };
+        return this.makeRequest(`${this.url}/favourites`, params, options);
+    }
+
+    static removeFavourite(name) {
+        let params = {q: name};
+        let options = {
+            method: 'DELETE',
+            credentials: 'include'
+        }
+        return this.makeRequest(`${this.url}/favourites`, params, options);
+    }
+
+    static async makeRequest(url, params = {}, options = {}) {
+        url = new URL(url);
         url.search = new URLSearchParams(params).toString();
-        console.debug(url);
+        console.info(options);
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, options);
             if (response.ok) {
                 return await response.json();
             } else {
@@ -212,5 +213,3 @@ class OpenWeather {
         }
     }
 }
-
-let ow = new OpenWeather();
