@@ -18,8 +18,11 @@ window.onload = function () {
 
     document.getElementById("toolbar__form").addEventListener("submit", (e) => {
         e.preventDefault();
-        const sectionId = insertDummy();
         let formCity = e.target.elements['form-city'];
+        if (!formCity.value) {
+            return;
+        }
+        const sectionId = insertDummy();
 
         Backend.addFavourite(formCity.value).then(weatherData => {
             if (weatherData) {
