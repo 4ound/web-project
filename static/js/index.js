@@ -138,13 +138,14 @@ let addCity = function (weatherData, sectionId) {
         = `[ ${weatherData['coord']['lon']}, ${weatherData['coord']['lat']} ]`;
 
     cityElement.querySelector("button").addEventListener("click", () => {
-        Backend.removeFavourite(weatherData['name']).then(() => {
-            let citiesList = document.getElementsByClassName("cities-list")[0];
-            let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
-            console.info(citiesList);
-            console.info(removingCity);
-            citiesList.removeChild(removingCity);
-            //TODO handle not ok resp
+        Backend.removeFavourite(weatherData['name']).then(response => {
+            if (response) {
+                let citiesList = document.getElementsByClassName("cities-list")[0];
+                let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
+                console.info(citiesList);
+                console.info(removingCity);
+                citiesList.removeChild(removingCity);
+            }
         })
     });
 
