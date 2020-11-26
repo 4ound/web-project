@@ -185,7 +185,7 @@ let getUserLocation = function (onSuccess, onError) {
 
 class OpenWeather {
     url = new URL("https://api.openweathermap.org/data/2.5/weather");
-    apiKey = "eafb827a2f211d77ce609493024edcac";
+    apiKey = "89ea62b0afb88ff59dabb47c248e6063";
 
     getByName(name) {
         let params = {q: name, appid: this.apiKey, units: 'metric', lang: 'ru'};
