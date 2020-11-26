@@ -77,7 +77,7 @@ app.route("/favourites")
         res.set('Access-Control-Allow-Credentials', 'true');
         let cookies = getCookies(req);
         removeCity(cookies, req.query.q).then(() => {
-            res.sendStatus(202);
+            res.send({response: "ok"});
         });
     })
 

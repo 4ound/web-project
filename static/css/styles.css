@@ -105,6 +105,11 @@ button:hover {
     background: gray;
 }
 
+button:disabled,
+button[disabled]{
+    background-color: lightgray;
+}
+
 body {
     font-family: monospace;
     margin: 0 20%;

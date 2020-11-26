@@ -138,13 +138,17 @@ let addCity = function (weatherData, sectionId) {
         = `[ ${weatherData['coord']['lon']}, ${weatherData['coord']['lat']} ]`;
 
     cityElement.querySelector("button").addEventListener("click", () => {
+        let citiesList = document.getElementsByClassName("cities-list")[0];
+        let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
+        let button = removingCity.querySelector("button");
+        button.disabled = true;
         Backend.removeFavourite(weatherData['name']).then(response => {
             if (response) {
-                let citiesList = document.getElementsByClassName("cities-list")[0];
-                let removingCity = document.querySelector(`.cities-list__city[city-id="${weatherData['id']}"]`);
                 console.info(citiesList);
                 console.info(removingCity);
                 citiesList.removeChild(removingCity);
+            } else {
+                button.disabled = false;
             }
         })
     });
