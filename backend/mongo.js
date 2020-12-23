@@ -8,13 +8,13 @@ export class Database {
     static collection;
 
     static getCollection() {
-        if (collection) {
-            return Promise.resolve(collection);
+        if (this.collection) {
+            return Promise.resolve(this.collection);
         }
         const client = new mongodb.MongoClient(this.URI, { useUnifiedTopology: true });
         return client.connect().then(() => {
             this.collection = client.db(process.env.MONGO_DB).collection(this.COLLECTION);
-            return collection;
+            return this.collection;
         });
     }
 
