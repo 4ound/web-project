@@ -1,60 +1,62 @@
 import mongodb from 'mongodb';
 
-const URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.lhmuq.mongodb.net/?retryWrites=true&w=majority`;
-const COLLECTION = "favourites";
-const CITIES_LIST_NAME = "cities";
+export class Database {
+    static URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.lhmuq.mongodb.net/?retryWrites=true&w=majority`;
+    static COLLECTION = "favourites";
+    static CITIES_LIST_NAME = "cities";
 
-let collection;
+    static collection;
 
-export function getCollection() {
-    if (collection) {
-        return Promise.resolve(collection);
-    }
-    const client = new mongodb.MongoClient(URI, { useUnifiedTopology: true });
-    return client.connect().then(() => {
-        collection = client.db(process.env.MONGO_DB).collection(COLLECTION);
-        return collection;
-    });
-}
-
-export function getCities(uuid) {
-    return getCollection().then(collection => {
-        return collection.findOne({uuid: uuid}).then(row => {
-            if (!row) {
-                console.debug('uuid is not knwon');
-                return [];
-            } else {
-                console.debug('uuid is known');
-                return row[CITIES_LIST_NAME];
-            }
-        })
-    });
-}
-
-export function addCity(uuid, name) {
-    return getCities(uuid).then(cities => {
-        if (cities.includes(name)) {
-            return false;
+    static getCollection() {
+        if (this.collection) {
+            return Promise.resolve(this.collection);
         }
-        cities.push(name);
-        return getCollection().then(collection => {
-            collection.updateOne(
-                {uuid: uuid},
-                {$set: {uuid: uuid, cities: cities}},
-                { upsert : true }
-            );
-            return true;
-        })
-    })
-}
+        const client = new mongodb.MongoClient(this.URI, { useUnifiedTopology: true });
+        return client.connect().then(() => {
+            this.collection = client.db(process.env.MONGO_DB).collection(this.COLLECTION);
+            return this.collection;
+        });
+    }
 
-export function removeCity(uuid, name) {
-    return getCities(uuid).then(cities => {
-        return getCollection().then(collection => {
-            collection.updateOne(
-                {uuid: uuid},
-                {$set: {uuid: uuid, cities: cities.filter(e => e !== name)}}
-            );
+    static getCities(uuid) {
+        return this.getCollection().then(collection => {
+            return collection.findOne({uuid: uuid}).then(row => {
+                if (!row) {
+                    console.debug('uuid is not known');
+                    return [];
+                } else {
+                    console.debug('uuid is known');
+                    return row[this.CITIES_LIST_NAME];
+                }
+            })
+        });
+    }
+
+    static addCity(uuid, name) {
+        return this.getCities(uuid).then(cities => {
+            if (cities.includes(name)) {
+                return false;
+            }
+            cities.push(name);
+            return this.getCollection().then(collection => {
+                collection.updateOne(
+                    {uuid: uuid},
+                    {$set: {uuid: uuid, cities: cities}},
+                    { upsert : true }
+                );
+                return true;
+            })
         })
-    })
+    }
+
+    static removeCity(uuid, name) {
+        return this.getCities(uuid).then(cities => {
+            return this.getCollection().then(collection => {
+                collection.updateOne(
+                    {uuid: uuid},
+                    {$set: {uuid: uuid, cities: cities.filter(e => e !== name)}}
+                );
+            })
+        })
+    }
 }

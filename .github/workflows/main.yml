@@ -2,7 +2,7 @@ name: Build docker image and deploy to heroku
 
 on:
   push:
-    branches: [ lab-3 ]
+    branches: [ lab-4 ]
 #  pull_request:
 #    branches: [ master ]
 

@@ -2,9 +2,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import crypto from "crypto";
 import {OpenWeather} from "./open_weather.js";
-import {getCollection, getCities, addCity, removeCity} from "./mongo.js";
-const mainRouter = express.Router(),
-    app = express();
+import {Database} from "./mongo.js";
+const mainRouter = express.Router();
+export const app = express();
 
 const COOKIE_NAME = "uuid";
 const COOKIE_LENGTH = 64;
@@ -38,7 +38,7 @@ app.route("/favourites")
         // console.info("@get " + getCookies(req));
         res.set('Access-Control-Allow-Credentials', 'true');
         res.set('Access-Control-Allow-Origin', req.headers.origin);
-        getCities(getCookies(req)).then(cities => {
+        Database.getCities(getCookies(req)).then(cities => {
             // Promise.all(cities.map(name => OpenWeather.getByName(name))).then(weatherCities => res.send((weatherCities)));
             res.send((cities));
         })
@@ -59,7 +59,7 @@ app.route("/favourites")
             if (!r) {
                 res.sendStatus(400);
             } else {
-                addCity(cookies, r.name).then(isAdded => {
+                Database.addCity(cookies, r.name).then(isAdded => {
                     if (!isAdded) {
                         res.sendStatus(400);
                     } else {
@@ -76,7 +76,7 @@ app.route("/favourites")
         res.set('Access-Control-Allow-Origin', req.headers.origin);
         res.set('Access-Control-Allow-Credentials', 'true');
         let cookies = getCookies(req);
-        removeCity(cookies, req.query.q).then(() => {
+        Database.removeCity(cookies, req.query.q).then(() => {
             res.send({response: "ok"});
         });
     })
