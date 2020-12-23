@@ -1,4 +1,4 @@
-name: Node.js Test, Build and Notify
+name: Backend tests
 
 on: [push]
 

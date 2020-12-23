@@ -49,7 +49,7 @@ window.onload = function () {
 let updateGeo = function () {
     let currentCity = document.querySelector(".current-city");
 
-    currentCity.querySelector("#current-city-name-weather-icon").setAttribute("src", "static/img/1x1.png");
+    currentCity.querySelector("#current-city-name-weather-icon").setAttribute("src", "frontend/static/img/1x1.png");
 
     let loaders = currentCity.querySelectorAll(".loaded");
     for (const loader of loaders) {
